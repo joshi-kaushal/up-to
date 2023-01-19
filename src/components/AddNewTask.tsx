@@ -8,6 +8,11 @@ function AddNewTask({ task, setTask, taskList, setTaskList }: AddNewTaskProps) {
   ) => {
     e.preventDefault();
     if (task.task && task.due && task.energy && task.priority) {
+      if (task.due.getTime() < new Date().getTime()) {
+        alert("Date goes back to history!");
+        return;
+      }
+
       if (taskList.some((item) => item.task === task.task)) {
         alert("A task with similar name already exists");
         return;
@@ -71,8 +76,10 @@ function AddNewTask({ task, setTask, taskList, setTaskList }: AddNewTaskProps) {
           type="date"
           placeholder="Due Date"
           className="flex rounded-lg p-1"
-          onChange={(e) => setTask({ ...task, due: e.target.value })}
-          value={task.due}
+          onChange={(e) => {
+            const date = e.target.valueAsDate;
+            setTask({ ...task, due: date });
+          }}
         />
 
         <button onClick={handleTaskSubmit}>

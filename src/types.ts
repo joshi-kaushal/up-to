@@ -17,7 +17,7 @@ export interface TaskState {
   task: string;
   priority: levels;
   energy: levels;
-  due: string;
+  due: Date | null;
   category: categories;
 }
 

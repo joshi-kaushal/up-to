@@ -1,12 +1,19 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import { TaskState } from "../types";
+import { TaskState, levels, categories } from "../types";
 import AddNewTask from "../components/AddNewTask";
 import TaskList from "../components/TaskList";
 
 const Home: NextPage = () => {
-  const [task, setTask] = useState<TaskState>({} as TaskState);
+  const [task, setTask] = useState<TaskState>({
+    id: 0,
+    task: "",
+    priority: levels.high,
+    energy: levels.low,
+    due: new Date(Date.now()),
+    category: categories.now,
+  } as TaskState);
   const [taskList, setTaskList] = useState<TaskState[]>([]);
 
   return (
