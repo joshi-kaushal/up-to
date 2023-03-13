@@ -1,8 +1,11 @@
-import { AddNewTaskProps, levels } from "../types";
+import { levels } from "../types";
 import { MdAddTask } from "react-icons/md";
 import getCategory from "../utils/getCategory";
+import { useTaskContext } from "../contexts/tasks";
 
-function AddNewTask({ task, setTask, taskList, setTaskList }: AddNewTaskProps) {
+function AddNewTask() {
+  const {task, setTask, taskList, setTaskList} = useTaskContext()
+
   const handleTaskSubmit = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -48,7 +51,7 @@ function AddNewTask({ task, setTask, taskList, setTaskList }: AddNewTaskProps) {
           value={task.priority}
           title="priority"
         >
-          <option disabled selected>
+          <option disabled value="">
             priority
           </option>
           <option value="low">low</option>
@@ -64,7 +67,7 @@ function AddNewTask({ task, setTask, taskList, setTaskList }: AddNewTaskProps) {
           title="energy"
           value={task.energy}
         >
-          <option disabled selected>
+          <option disabled value="">
             energy
           </option>
           <option value="low">low</option>

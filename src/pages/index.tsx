@@ -1,20 +1,20 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useState, useEffect } from "react";
-import { TaskState, levels, categories } from "../types";
 import AddNewTask from "../components/AddNewTask";
 import TaskList from "../components/TaskList";
+import {  TaskProvider } from "../contexts/tasks";
 
 const Home: NextPage = () => {
-  const [task, setTask] = useState<TaskState>({
-    id: 0,
-    task: "",
-    priority: levels.high,
-    energy: levels.low,
-    due: new Date(Date.now()),
-    category: categories.now,
-  } as TaskState);
-  const [taskList, setTaskList] = useState<TaskState[]>([]);
+  // const [task, setTask] = useState<TaskState>({
+  //   id: 0,
+  //   task: "",
+  //   priority: levels.high,
+  //   energy: levels.low,
+  //   due: new Date(Date.now()),
+  //   category: categories.now,
+  // } as TaskState);
+  // const [taskList, setTaskList] = useState<TaskState[]>([]);
+
 
   return (
     <>
@@ -26,6 +26,8 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+    
+      <TaskProvider>
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <section className="container flex flex-col items-center justify-center gap-12 p-4">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
@@ -36,15 +38,12 @@ const Home: NextPage = () => {
           </h3>
         </section>
 
-        <AddNewTask
-          task={task}
-          setTask={setTask}
-          taskList={taskList}
-          setTaskList={setTaskList}
-        />
+        <AddNewTask />
 
-        <TaskList taskList={taskList} />
+        <TaskList /> 
+        
       </main>
+      </TaskProvider>
     </>
   );
 };
