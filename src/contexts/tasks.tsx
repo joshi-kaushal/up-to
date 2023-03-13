@@ -1,13 +1,5 @@
 import React, { useState, useContext } from "react";
-
-import { TaskState, levels, categories } from "../types";
-
-type TaskContextType = {
-	task: TaskState,
-	setTask: React.Dispatch<React.SetStateAction<TaskState>>,
-	taskList: TaskState[],
-	setTaskList: React.Dispatch<React.SetStateAction<TaskState[]>>
-}
+import { TaskState, levels, categories, TaskContextType } from "../types";
 
 // Craeting context
 const TaskContext = React.createContext<TaskContextType>({
@@ -18,7 +10,6 @@ const TaskContext = React.createContext<TaskContextType>({
 });
 
 // Providing context
-
 const TaskProvider = ({ children }: any) => {
 
   const [task, setTask] = useState<TaskState>({
@@ -39,11 +30,8 @@ const TaskProvider = ({ children }: any) => {
   );
 };
 
-// Creating custom global hook
-// Better if you have big app
+// Creating custom hook
 export const useTaskContext = () => useContext(TaskContext);
 
 export { TaskContext, TaskProvider };
 
-// encapsulate <App /> in index.js with AppProvider
-// call useGlobalContext whereever you want and destructure data that you require

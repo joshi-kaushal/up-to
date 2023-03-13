@@ -31,3 +31,10 @@ export interface AddNewTaskProps {
 export interface TaskListProps {
   taskList: TaskState[];
 }
+
+export interface TaskContextType {
+	task: TaskState,
+	setTask: React.Dispatch<React.SetStateAction<TaskState>>,
+	taskList: TaskState[],
+	setTaskList: React.Dispatch<React.SetStateAction<TaskState[]>>
+}
