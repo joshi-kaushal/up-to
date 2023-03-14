@@ -5,11 +5,11 @@ export enum levels {
 }
 
 export enum categories {
-  now,
-  asap,
-  soon,
-  next,
-  rethink,
+  now = "now",
+  asap = "asap",
+  soon = "soon",
+  next = "next",
+  rethink = "rethink",
 }
 
 export interface TaskState {
@@ -33,8 +33,8 @@ export interface TaskListProps {
 }
 
 export interface TaskContextType {
-	task: TaskState,
-	setTask: React.Dispatch<React.SetStateAction<TaskState>>,
-	taskList: TaskState[],
-	setTaskList: React.Dispatch<React.SetStateAction<TaskState[]>>
+  task: TaskState;
+  setTask: React.Dispatch<React.SetStateAction<TaskState>>;
+  taskList: TaskState[];
+  setTaskList: React.Dispatch<React.SetStateAction<TaskState[]>>;
 }

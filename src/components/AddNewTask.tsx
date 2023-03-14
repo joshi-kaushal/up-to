@@ -2,9 +2,10 @@ import { levels } from "../types";
 import { MdAddTask } from "react-icons/md";
 import getCategory from "../utils/getCategory";
 import { useTaskContext } from "../contexts/tasks";
+import decideUrgency from "../utils/decideUrgency";
 
 function AddNewTask() {
-  const {task, setTask, taskList, setTaskList} = useTaskContext()
+  const { task, setTask, taskList, setTaskList } = useTaskContext();
 
   const handleTaskSubmit = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -86,6 +87,7 @@ function AddNewTask() {
         />
 
         <button onClick={handleTaskSubmit}>
+          <span className="hidden">Add task</span>
           <MdAddTask className="m-1 h-8 w-8 rounded-xl border border-green-300 p-1 text-green-300 transition-all duration-300 hover:border-black hover:bg-green-300 hover:text-black focus:bg-green-300" />
         </button>
       </div>
