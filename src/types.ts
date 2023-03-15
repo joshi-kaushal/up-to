@@ -37,4 +37,7 @@ export interface TaskContextType {
   setTask: React.Dispatch<React.SetStateAction<TaskState>>;
   taskList: TaskState[];
   setTaskList: React.Dispatch<React.SetStateAction<TaskState[]>>;
+  addTask: () => void;
+  removeTask: (id: number) => void;
+  getTasks: () => void;
 }

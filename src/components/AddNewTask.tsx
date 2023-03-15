@@ -2,14 +2,11 @@ import { levels } from "../types";
 import { MdAddTask } from "react-icons/md";
 import getCategory from "../utils/getCategory";
 import { useTaskContext } from "../contexts/tasks";
-import decideUrgency from "../utils/decideUrgency";
 
 function AddNewTask() {
-  const { task, setTask, taskList, setTaskList } = useTaskContext();
+  const { task, setTask, taskList, setTaskList, addTask } = useTaskContext();
 
-  const handleTaskSubmit = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleTaskSubmit = (e: any) => {
     e.preventDefault();
     if (task.task && task.due && task.energy && task.priority) {
       if (task.due.getTime() < new Date().getTime()) {
@@ -22,19 +19,21 @@ function AddNewTask() {
         return;
       }
 
-      setTaskList([
-        ...taskList,
-        {
-          ...task,
-          id: Date.now(),
-          category: getCategory(task),
-        },
-      ]);
+      addTask();
+
+      // setTaskList([
+      //   ...taskList,
+      //   {
+      //     ...task,
+      //     id: Date.now(),
+      //     category: getCategory(task),
+      //   },
+      // ]);
     } else alert("Please fill all properties");
   };
 
   return (
-    <section className="m-2 flex w-96 flex-col gap-2">
+    <form onSubmit={handleTaskSubmit} className="m-2 flex w-96 flex-col gap-2">
       <input
         type="text"
         placeholder="Enter task"
@@ -86,12 +85,12 @@ function AddNewTask() {
           }}
         />
 
-        <button onClick={handleTaskSubmit}>
+        <button type="submit">
           <span className="hidden">Add task</span>
           <MdAddTask className="m-1 h-8 w-8 rounded-xl border border-green-300 p-1 text-green-300 transition-all duration-300 hover:border-black hover:bg-green-300 hover:text-black focus:bg-green-300" />
         </button>
       </div>
-    </section>
+    </form>
   );
 }
 
